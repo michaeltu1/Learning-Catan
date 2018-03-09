@@ -27,6 +27,14 @@ public class Tile {
         return this.position;
     }
 
+    public int getRollNum() {
+        return this.rollNum;
+    }
+
+    public String getResource() {
+        return this.resource;
+    }
+
     public static void main(String[] args) {
 
     }
