@@ -6,7 +6,6 @@ public class Intersection {
     String port;
     boolean hasBuilding;
 
-
     Intersection(ArrayList<Tile> adjacents, String port) {
         this.adjacents = adjacents;
         this.port = port;
@@ -22,11 +21,12 @@ public class Intersection {
         return true;
     }
 
-    private class Edge {
-        boolean hasRoad;
+    public void checkAdjacents() {
+        for (adjacents) {
+            Board.adjacentTiles.
+        }
 
     }
-
 
     public static void main(String[] args) {
 

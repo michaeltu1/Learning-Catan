@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashSet;
+import java.util.*;
 
 public class Board {
 
@@ -15,7 +12,7 @@ public class Board {
     public ArrayList<Integer> order = new ArrayList<>(
             Arrays.asList(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17 ,18));
 
-    public ArrayList<Tile> board = new ArrayList<>(19);
+    private ArrayList<Tile> board = new ArrayList<>(19);
 
     private HashSet<Integer> adjacentTiles(Tile t) {
         HashSet<Integer> hs = new HashSet<>();
@@ -146,18 +143,37 @@ public class Board {
         return hs;
     }
 
+    private boolean checkAdjacentRolls() {
+        for (int i = 0; i < 4; i++) {
+            Tile t = board.get(order.get(i));
+            List<Integer> positions = order.subList(0, 4);
+            for (int x : adjacentTiles(t)) {
+                if (positions.contains(x)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
     public Board(String mode) {
 
         // Initialize random board
         Collections.shuffle(red_dice_roll_nums);
         Collections.shuffle(black_dice_roll_nums);
         Collections.shuffle(resource_tiles);
-        Collections.shuffle(order);
 
-        for (int i = 0; i < 4; i++) {
-            Tile t = new Tile(order.get(i), resource_tiles.get(i), red_dice_roll_nums.get(i));
-            board.add(order.get(i), t);
-
+        boolean neighboringRedRolls = true;
+        while (neighboringRedRolls) {
+            Collections.shuffle(order);
+            board = new ArrayList<>(
+                    Arrays.asList(null, null, null, null, null, null, null, null, null,
+                            null, null, null, null, null, null, null, null, null, null));
+            for (int i = 0; i < 4; i++) {
+                Tile t = new Tile(order.get(i), resource_tiles.get(i), red_dice_roll_nums.get(i));
+                board.set(order.get(i), t);
+            }
+            neighboringRedRolls = checkAdjacentRolls();
         }
 
 
@@ -186,5 +202,7 @@ public class Board {
         System.out.println("Board class main method run!");
         Board b = new Board("random");
         System.out.println(b.board);
+
+//        System.out.println(b.adjacentTiles(new Tile(12, "Wheat", 12)));
     }
 }
