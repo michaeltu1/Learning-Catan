@@ -5,11 +5,13 @@ import java.util.HashSet;
 
 public class Board {
 
-    public ArrayList<Integer> dice_roll_nums = new ArrayList<>(
-            Arrays.asList(2, 3, 3, 4, 4, 5, 5, 6, 6, 8, 8, 9, 9, 10, 10, 11, 11 ,12));
+
+    public ArrayList<Integer> red_dice_roll_nums = new ArrayList<>(Arrays.asList(6, 6, 8, 8));
+    public ArrayList<Integer> black_dice_roll_nums = new ArrayList<>(
+            Arrays.asList(2, 3, 3, 4, 4, 5, 5, 9, 9, 10, 10, 11, 11 ,12));
     public ArrayList<String> resource_tiles = new ArrayList<>(
             Arrays.asList("Wheat", "Wheat", "Wheat", "Wheat", "Sheep", "Sheep", "Sheep", "Sheep",
-                    "Ore", "Ore", "Ore", "Clay", "Clay", "Clay", "Wood", "Wood", "Wood", "Wood", "Desert"));
+                    "Ore", "Ore", "Ore", "Clay", "Clay", "Clay", "Wood", "Wood", "Wood", "Wood"));
 
     public ArrayList<Tile> board = new ArrayList<>(19);
 
@@ -145,8 +147,13 @@ public class Board {
     public Board(String mode) {
 
         // Initialize random board
-        Collections.shuffle(dice_roll_nums);
+        Collections.shuffle(red_dice_roll_nums);
+        Collections.shuffle(black_dice_roll_nums);
         Collections.shuffle(resource_tiles);
+
+        for (int i = 0; i < 4; i++) {
+            Tile t = new Tile(resource_tiles.get(i), red_dice_roll_nums.get(i));
+        }
 
         for (int i = 0; i < 19; i++) {
             String resource = resource_tiles.remove(0);
