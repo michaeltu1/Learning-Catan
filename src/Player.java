@@ -2,10 +2,10 @@ import java.util.HashMap;
 
 public class Player {
 
-    private final String name;
+//    private final String name;
     private HashMap<String, Integer> resources;
-    private ArrayList<DevCard> hand;
-    private ArrayList<Road> roads;
+//    private ArrayList<DevCard> hand;
+//    private ArrayList<Road> roads;
     private int numbKnights = 0;
     private int numbSettlements = 2;
     private int victoryPoints = 2;

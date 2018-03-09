@@ -14,7 +14,7 @@ public class Intersection {
     }
 
     public boolean canSettle() {
-
+        return false;
     }
 
     public static void main(String[] args) {
