@@ -8,7 +8,8 @@ public class Tile {
     private int rollNum;
     private ArrayList<Intersection> vertices;
 
-    public Tile(String resource, int rollNum) {
+    public Tile(int position, String resource, int rollNum) {
+        this.position = position;
         this.resource = resource;
         this.rollNum = rollNum;
 

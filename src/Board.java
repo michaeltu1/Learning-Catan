@@ -12,6 +12,8 @@ public class Board {
     public ArrayList<String> resource_tiles = new ArrayList<>(
             Arrays.asList("Wheat", "Wheat", "Wheat", "Wheat", "Sheep", "Sheep", "Sheep", "Sheep",
                     "Ore", "Ore", "Ore", "Clay", "Clay", "Clay", "Wood", "Wood", "Wood", "Wood"));
+    public ArrayList<Integer> order = new ArrayList<>(
+            Arrays.asList(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17 ,18));
 
     public ArrayList<Tile> board = new ArrayList<>(19);
 
@@ -150,19 +152,22 @@ public class Board {
         Collections.shuffle(red_dice_roll_nums);
         Collections.shuffle(black_dice_roll_nums);
         Collections.shuffle(resource_tiles);
+        Collections.shuffle(order);
 
         for (int i = 0; i < 4; i++) {
-            Tile t = new Tile(resource_tiles.get(i), red_dice_roll_nums.get(i));
+            Tile t = new Tile(order.get(i), resource_tiles.get(i), red_dice_roll_nums.get(i));
+            board.add(order.get(i), t);
         }
 
-        for (int i = 0; i < 19; i++) {
-            String resource = resource_tiles.remove(0);
-            if (resource.equals("Desert")) {
-                board.add(i, new Tile(resource, -1));
-            } else {
-                board.add(i, new Tile(resource, dice_roll_nums.remove(0)));
-            }
-        }
+
+//        for (int i = 0; i < 19; i++) {
+//            String resource = resource_tiles.remove(0);
+//            if (resource.equals("Desert")) {
+//                board.add(i, new Tile(resource, -1));
+//            } else {
+//                board.add(i, new Tile(resource, dice_roll_nums.remove(0)));
+//            }
+//        }
 
 //        if (mode.equals("random")) {
 //            for (int i = 0; i < 19; i++) {
