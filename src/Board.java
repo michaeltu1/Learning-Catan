@@ -157,6 +157,7 @@ public class Board {
         for (int i = 0; i < 4; i++) {
             Tile t = new Tile(order.get(i), resource_tiles.get(i), red_dice_roll_nums.get(i));
             board.add(order.get(i), t);
+
         }
 
 
