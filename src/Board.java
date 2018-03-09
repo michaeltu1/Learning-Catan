@@ -8,13 +8,13 @@ public class Board {
             Arrays.asList(2, 3, 3, 4, 4, 5, 5, 9, 9, 10, 10, 11, 11 ,12));
     public ArrayList<String> resource_tiles = new ArrayList<>(
             Arrays.asList("Wheat", "Wheat", "Wheat", "Wheat", "Sheep", "Sheep", "Sheep", "Sheep",
-                    "Ore", "Ore", "Ore", "Clay", "Clay", "Clay", "Wood", "Wood", "Wood", "Wood"));
+                    "Ore", "Ore", "Ore", "Clay", "Clay", "Clay", "Wood", "Wood", "Wood", "Wood", "Desert"));
     public ArrayList<Integer> order = new ArrayList<>(
             Arrays.asList(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17 ,18));
 
-    private ArrayList<Tile> board = new ArrayList<>(19);
+    public ArrayList<Tile> board = new ArrayList<>(19);
 
-    private HashSet<Integer> adjacentTiles(Tile t) {
+    HashSet<Integer> adjacentTiles(Tile t) {
         HashSet<Integer> hs = new HashSet<>();
         switch(t.getPosition()) {
             case 0:
@@ -163,19 +163,36 @@ public class Board {
         Collections.shuffle(black_dice_roll_nums);
         Collections.shuffle(resource_tiles);
 
+        ArrayList<String> resources = new ArrayList<>();
+
         boolean neighboringRedRolls = true;
         while (neighboringRedRolls) {
             Collections.shuffle(order);
             board = new ArrayList<>(
                     Arrays.asList(null, null, null, null, null, null, null, null, null,
                             null, null, null, null, null, null, null, null, null, null));
+            resources = new ArrayList<>();
             for (int i = 0; i < 4; i++) {
                 Tile t = new Tile(order.get(i), resource_tiles.get(i), red_dice_roll_nums.get(i));
                 board.set(order.get(i), t);
+                resources.add(resource_tiles.get(i));
             }
             neighboringRedRolls = checkAdjacentRolls();
         }
 
+        for (String resource : resources) {
+            resource_tiles.remove(resource);
+        }
+
+        for (int i = 0; i < 15; i++) {
+            int position = order.remove(4);
+            String resource = resource_tiles.remove(0);
+            if (resource.equals("Desert")) {
+                board.set(position, new Tile(position, resource, -1));
+            } else {
+                board.set(position, new Tile(position, resource, black_dice_roll_nums.remove(0)));
+            }
+        }
 
 //        for (int i = 0; i < 19; i++) {
 //            String resource = resource_tiles.remove(0);
@@ -198,11 +215,75 @@ public class Board {
 //        }
     }
 
+    public void printBoardResourceAssignment() {
+        System.out.println();
+
+        System.out.print("     ");
+        System.out.print(board.get(2).getResource() + " ");
+        System.out.print(board.get(1).getResource() + " ");
+        System.out.println(board.get(0).getResource() + " ");
+
+        System.out.print("   ");
+        System.out.print(board.get(3).getResource() + " ");
+        System.out.print(board.get(13).getResource() + " ");
+        System.out.print(board.get(12).getResource() + " ");
+        System.out.println(board.get(11).getResource() + " ");
+
+        System.out.print(" ");
+        System.out.print(board.get(4).getResource() + " ");
+        System.out.print(board.get(14).getResource() + " ");
+        System.out.print(board.get(18).getResource() + " ");
+        System.out.print(board.get(17).getResource() + " ");
+        System.out.println(board.get(10).getResource() + " ");
+
+        System.out.print("   ");
+        System.out.print(board.get(5).getResource() + " ");
+        System.out.print(board.get(15).getResource() + " ");
+        System.out.print(board.get(16).getResource() + " ");
+        System.out.println(board.get(9).getResource() + " ");
+
+        System.out.print("     ");
+        System.out.print(board.get(6).getResource() + " ");
+        System.out.print(board.get(7).getResource() + " ");
+        System.out.println(board.get(8).getResource() + " ");
+    }
+
+    public void printBoardDiceRollAssignment() {
+        System.out.println();
+
+        System.out.print("  ");
+        System.out.print(board.get(2).getRollNum() + " ");
+        System.out.print(board.get(1).getRollNum() + " ");
+        System.out.println(board.get(0).getRollNum() + " ");
+
+        System.out.print(" ");
+        System.out.print(board.get(3).getRollNum() + " ");
+        System.out.print(board.get(13).getRollNum() + " ");
+        System.out.print(board.get(12).getRollNum() + " ");
+        System.out.println(board.get(11).getRollNum() + " ");
+
+        System.out.print("");
+        System.out.print(board.get(4).getRollNum() + " ");
+        System.out.print(board.get(14).getRollNum() + " ");
+        System.out.print(board.get(18).getRollNum() + " ");
+        System.out.print(board.get(17).getRollNum() + " ");
+        System.out.println(board.get(10).getRollNum() + " ");
+
+        System.out.print(" ");
+        System.out.print(board.get(5).getRollNum() + " ");
+        System.out.print(board.get(15).getRollNum() + " ");
+        System.out.print(board.get(16).getRollNum() + " ");
+        System.out.println(board.get(9).getRollNum() + " ");
+
+        System.out.print("  ");
+        System.out.print(board.get(6).getRollNum() + " ");
+        System.out.print(board.get(7).getRollNum() + " ");
+        System.out.println(board.get(8).getRollNum() + " ");
+    }
+
     public static void main(String[] args) {
         System.out.println("Board class main method run!");
         Board b = new Board("random");
-        System.out.println(b.board);
-
-//        System.out.println(b.adjacentTiles(new Tile(12, "Wheat", 12)));
+        b.printBoardDiceRollAssignment();
     }
 }
