@@ -4,7 +4,7 @@ public class Player {
 
 //    private final String name;
     private HashMap<String, Integer> resources;
-//    private ArrayList<DevCard> hand;
+//    private HashMap<DevCard> hand;
 //    private ArrayList<Road> roads;
     private int numbKnights = 0;
     private int numbSettlements = 2;

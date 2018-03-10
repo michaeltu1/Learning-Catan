@@ -266,5 +266,6 @@ public class Board {
         System.out.println("Board class main method run!");
         Board b = new Board("random");
         b.printBoardDiceRollAssignment();
+        b.printBoardResourceAssignment();
     }
 }

@@ -12,14 +12,14 @@ public class Intersection {
         hasBuilding = false;
     }
 
-    public boolean canSettle() {
-        if (hasBuilding) {
-            return false;
-        } else if (neighborSettlement()) {
-            return false;
-        }
-        return true;
-    }
+//    public boolean canSettle() {
+//        if (hasBuilding) {
+//            return false;
+//        } else if (neighborSettlement()) {
+//            return false;
+//        }
+//        return true;
+//    }
 
     public boolean neighborSettlement(Intersection neighbor) {
         for (int i = 0; i < 3; i++) {
