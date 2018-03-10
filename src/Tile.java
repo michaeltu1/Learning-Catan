@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Tile {
 
@@ -12,6 +13,8 @@ public class Tile {
         this.position = position;
         this.resource = resource;
         this.rollNum = rollNum;
+        this.vertices = new ArrayList(Arrays.asList(1, 2, 3, 4, 5, 6));
+
 
         if (rollNum == -1 && resource.equals("Desert")) {
             this.hasRobber = true;
