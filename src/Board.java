@@ -7,7 +7,7 @@ public class Board {
     ArrayList<Integer> blackDiceRollNums = new ArrayList<>(
             Arrays.asList(2, 3, 3, 4, 4, 5, 5, 9, 9, 10, 10, 11, 11 ,12));
 
-    ArrayList<String> resource_tiles = new ArrayList<>(
+    ArrayList<String> resourceTiles = new ArrayList<>(
             Arrays.asList("Wheat", "Wheat", "Wheat", "Wheat", "Sheep", "Sheep", "Sheep", "Sheep",
                     "Ore", "Ore", "Ore", "Clay", "Clay", "Clay", "Wood", "Wood", "Wood", "Wood"));
 
@@ -163,7 +163,7 @@ public class Board {
         // Initialize random board
         Collections.shuffle(redDiceRollNums);
         Collections.shuffle(blackDiceRollNums);
-        Collections.shuffle(resource_tiles);
+        Collections.shuffle(resourceTiles);
 
         ArrayList<String> resources = new ArrayList<>();
 
@@ -175,20 +175,20 @@ public class Board {
                             null, null, null, null, null, null, null, null, null, null));
             resources = new ArrayList<>();
             for (int i = 0; i < 4; i++) {
-                Tile t = new Tile(order.get(i), resource_tiles.get(i), redDiceRollNums.get(i));
+                Tile t = new Tile(order.get(i), resourceTiles.get(i), redDiceRollNums.get(i));
                 board.set(order.get(i), t);
-                resources.add(resource_tiles.get(i));
+                resources.add(resourceTiles.get(i));
             }
             neighboringRedRolls = checkAdjacentRolls();
         }
 
         for (String resource : resources) {
-            resource_tiles.remove(resource);
+            resourceTiles.remove(resource);
         }
 
         for (int i = 0; i < 14; i++) {
             int position = order.remove(4);
-            String resource = resource_tiles.remove(0);
+            String resource = resourceTiles.remove(0);
             board.set(position, new Tile(position, resource, blackDiceRollNums.remove(0)));
         }
 
