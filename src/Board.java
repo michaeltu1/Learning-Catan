@@ -2,17 +2,19 @@ import java.util.*;
 
 public class Board {
 
+    ArrayList<Integer> red_dice_roll_nums = new ArrayList<>(Arrays.asList(6, 6, 8, 8));
 
-    public ArrayList<Integer> red_dice_roll_nums = new ArrayList<>(Arrays.asList(6, 6, 8, 8));
-    public ArrayList<Integer> black_dice_roll_nums = new ArrayList<>(
+    ArrayList<Integer> black_dice_roll_nums = new ArrayList<>(
             Arrays.asList(2, 3, 3, 4, 4, 5, 5, 9, 9, 10, 10, 11, 11 ,12));
-    public ArrayList<String> resource_tiles = new ArrayList<>(
+
+    ArrayList<String> resource_tiles = new ArrayList<>(
             Arrays.asList("Wheat", "Wheat", "Wheat", "Wheat", "Sheep", "Sheep", "Sheep", "Sheep",
                     "Ore", "Ore", "Ore", "Clay", "Clay", "Clay", "Wood", "Wood", "Wood", "Wood"));
-    public ArrayList<Integer> order = new ArrayList<>(
+
+    ArrayList<Integer> order = new ArrayList<>(
             Arrays.asList(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17 ,18));
 
-    public ArrayList<Tile> board = new ArrayList<>(19);
+    ArrayList<Tile> board = new ArrayList<>(19);
 
     HashSet<Integer> adjacentTiles(Tile t) {
         HashSet<Integer> hs = new HashSet<>();
