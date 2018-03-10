@@ -8,7 +8,7 @@ public class Board {
             Arrays.asList(2, 3, 3, 4, 4, 5, 5, 9, 9, 10, 10, 11, 11 ,12));
     public ArrayList<String> resource_tiles = new ArrayList<>(
             Arrays.asList("Wheat", "Wheat", "Wheat", "Wheat", "Sheep", "Sheep", "Sheep", "Sheep",
-                    "Ore", "Ore", "Ore", "Clay", "Clay", "Clay", "Wood", "Wood", "Wood", "Wood", "Desert"));
+                    "Ore", "Ore", "Ore", "Clay", "Clay", "Clay", "Wood", "Wood", "Wood", "Wood"));
     public ArrayList<Integer> order = new ArrayList<>(
             Arrays.asList(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17 ,18));
 
@@ -184,35 +184,14 @@ public class Board {
             resource_tiles.remove(resource);
         }
 
-        for (int i = 0; i < 15; i++) {
+        for (int i = 0; i < 14; i++) {
             int position = order.remove(4);
             String resource = resource_tiles.remove(0);
-            if (resource.equals("Desert")) {
-                board.set(position, new Tile(position, resource, -1));
-            } else {
-                board.set(position, new Tile(position, resource, black_dice_roll_nums.remove(0)));
-            }
+            board.set(position, new Tile(position, resource, black_dice_roll_nums.remove(0)));
         }
 
-//        for (int i = 0; i < 19; i++) {
-//            String resource = resource_tiles.remove(0);
-//            if (resource.equals("Desert")) {
-//                board.add(i, new Tile(resource, -1));
-//            } else {
-//                board.add(i, new Tile(resource, dice_roll_nums.remove(0)));
-//            }
-//        }
-
-//        if (mode.equals("random")) {
-//            for (int i = 0; i < 19; i++) {
-//                String tile = resource_tiles.remove(0);
-//                if (tile.equals("Desert")) {
-//                    board.add(i, new ArrayList<Object>(Arrays.asList(-1, tile)));
-//                } else {
-//                    board.add(i, new ArrayList<Object>(Arrays.asList(dice_roll_nums.remove(0), tile)));
-//                }
-//            }
-//        }
+        int position = order.remove(4);
+        board.set(position, new Tile(position, "Desert", 0));
     }
 
     public void printBoardResourceAssignment() {
