@@ -2,9 +2,9 @@ import java.util.*;
 
 public class Board {
 
-    ArrayList<Integer> red_dice_roll_nums = new ArrayList<>(Arrays.asList(6, 6, 8, 8));
+    ArrayList<Integer> redDiceRollNums = new ArrayList<>(Arrays.asList(6, 6, 8, 8));
 
-    ArrayList<Integer> black_dice_roll_nums = new ArrayList<>(
+    ArrayList<Integer> blackDiceRollNums = new ArrayList<>(
             Arrays.asList(2, 3, 3, 4, 4, 5, 5, 9, 9, 10, 10, 11, 11 ,12));
 
     ArrayList<String> resource_tiles = new ArrayList<>(
@@ -161,8 +161,8 @@ public class Board {
     public Board(String mode) {
 
         // Initialize random board
-        Collections.shuffle(red_dice_roll_nums);
-        Collections.shuffle(black_dice_roll_nums);
+        Collections.shuffle(redDiceRollNums);
+        Collections.shuffle(blackDiceRollNums);
         Collections.shuffle(resource_tiles);
 
         ArrayList<String> resources = new ArrayList<>();
@@ -175,7 +175,7 @@ public class Board {
                             null, null, null, null, null, null, null, null, null, null));
             resources = new ArrayList<>();
             for (int i = 0; i < 4; i++) {
-                Tile t = new Tile(order.get(i), resource_tiles.get(i), red_dice_roll_nums.get(i));
+                Tile t = new Tile(order.get(i), resource_tiles.get(i), redDiceRollNums.get(i));
                 board.set(order.get(i), t);
                 resources.add(resource_tiles.get(i));
             }
@@ -189,7 +189,7 @@ public class Board {
         for (int i = 0; i < 14; i++) {
             int position = order.remove(4);
             String resource = resource_tiles.remove(0);
-            board.set(position, new Tile(position, resource, black_dice_roll_nums.remove(0)));
+            board.set(position, new Tile(position, resource, blackDiceRollNums.remove(0)));
         }
 
         int position = order.remove(4);
