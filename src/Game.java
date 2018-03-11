@@ -11,6 +11,8 @@ public class Game {
         discard half the hand on 7's
         move robber
 
+        trading / exchanging with bank or ports
+
         building phase
 
         return value?

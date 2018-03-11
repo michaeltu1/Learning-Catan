@@ -13,8 +13,7 @@ public class Tile {
         this.position = position;
         this.resource = resource;
         this.rollNum = rollNum;
-        this.vertices = new ArrayList(Arrays.asList(1, 2, 3, 4, 5, 6));
-
+        this.vertices = new ArrayList(Arrays.asList(0, 1, 2, 3, 4, 5)); // TODO: tell Alex changed to 0-indexed vals
 
         if (rollNum == 0 && resource.equals("Desert")) {
             this.hasRobber = true;
