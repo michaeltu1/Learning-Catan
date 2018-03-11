@@ -1,6 +1,18 @@
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Game {
+
+    ArrayList<Player> players = new ArrayList<>();
+
+    public boolean winCondition() {
+        for (Player p : players) {
+            if (p.getVictoryPoints() >= 10) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     public void nextTurn() {
         /*

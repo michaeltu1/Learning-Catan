@@ -14,6 +14,10 @@ public class Player {
     private boolean hasLargestArmy;
     private boolean[] ports = {false, false, false, false, false, false};
 
+    public int getVictoryPoints() {
+        return this.victoryPoints;
+    }
+
     public static void main(String[] args) {
     }
 }
