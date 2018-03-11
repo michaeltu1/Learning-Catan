@@ -16,7 +16,7 @@ public class Tile {
         this.vertices = new ArrayList(Arrays.asList(1, 2, 3, 4, 5, 6));
 
 
-        if (rollNum == -1 && resource.equals("Desert")) {
+        if (rollNum == 0 && resource.equals("Desert")) {
             this.hasRobber = true;
         } else {
             this.hasRobber = false;
@@ -33,6 +33,18 @@ public class Tile {
 
     public String getResource() {
         return this.resource;
+    }
+
+    public boolean isBlocked() {
+        return this.hasRobber;
+    }
+
+    public void unBlock() {
+        this.hasRobber = false;
+    }
+
+    public void block() {
+        this.hasRobber = true;
     }
 
     public static void main(String[] args) {
